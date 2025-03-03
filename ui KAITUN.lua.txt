@@ -17,7 +17,7 @@ local logoLabel = Instance.new("ImageLabel")
 logoLabel.Size = UDim2.new(0.15, 0, 0.15, 0)
 logoLabel.Position = UDim2.new(0.425, 0, 0.05, 0)
 logoLabel.BackgroundTransparency = 1
-logoLabel.Image = "rbxassetid://88374449523340"
+logoLabel.Image = "rbxassetid://824965316475"
 logoLabel.Visible = false
 logoLabel.Parent = screenGui
 
@@ -117,7 +117,7 @@ BackgroundImage.Name = "BackgroundImage"
 BackgroundImage.Parent = ToggleButton
 BackgroundImage.BackgroundTransparency = 1
 BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
-BackgroundImage.Image = "rbxassetid://88374449523340"
+BackgroundImage.Image = "rbxassetid://824965316475"
 BackgroundImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
 
 ToggleButtonHUI.Parent = ToggleButton
