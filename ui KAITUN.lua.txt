@@ -1,0 +1,164 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local background = Instance.new("Frame")
+background.Size = UDim2.new(2, 0, 2, 0)
+background.Position = UDim2.new(-0.5, 0, -0.5, 0)
+background.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+background.BorderSizePixel = 0
+background.Visible = false
+background.Parent = screenGui
+
+local logoLabel = Instance.new("ImageLabel")
+logoLabel.Size = UDim2.new(0.15, 0, 0.15, 0)
+logoLabel.Position = UDim2.new(0.425, 0, 0.05, 0)
+logoLabel.BackgroundTransparency = 1
+logoLabel.Image = "rbxassetid://88374449523340"
+logoLabel.Visible = false
+logoLabel.Parent = screenGui
+
+local nameLabel = Instance.new("TextLabel")
+nameLabel.Size = UDim2.new(0.5, 0, 0.1, 0)
+nameLabel.Position = UDim2.new(0.25, 0, 0.2, 0)
+nameLabel.Text = "Name: " .. Players.LocalPlayer.Name
+nameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+nameLabel.Font = Enum.Font.GothamBold
+nameLabel.TextSize = 36
+nameLabel.BackgroundTransparency = 1
+nameLabel.Visible = false
+nameLabel.Parent = screenGui
+
+local fpsLabel = Instance.new("TextLabel")
+fpsLabel.Size = UDim2.new(0, 200, 0, 50)
+fpsLabel.Position = UDim2.new(1, -220, 0, 10)
+fpsLabel.Text = "FPS: 0"
+fpsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+fpsLabel.Font = Enum.Font.GothamBold
+fpsLabel.TextSize = 36
+fpsLabel.BackgroundTransparency = 1
+fpsLabel.Visible = false
+fpsLabel.Parent = screenGui
+
+local timeLabel = Instance.new("TextLabel")
+timeLabel.Size = UDim2.new(0.5, 0, 0.1, 0)
+timeLabel.Position = UDim2.new(0.25, 0, 0.35, 0)
+timeLabel.Text = "Time: 00:00:00"
+timeLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+timeLabel.Font = Enum.Font.GothamBold
+timeLabel.TextSize = 36
+timeLabel.BackgroundTransparency = 1
+timeLabel.Visible = false
+timeLabel.Parent = screenGui
+
+local levelLabel = Instance.new("TextLabel")
+levelLabel.Size = UDim2.new(0.5, 0, 0.1, 0)
+levelLabel.Position = UDim2.new(0.25, 0, 0.5, 0)
+levelLabel.Text = "Level: 0"
+levelLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+levelLabel.Font = Enum.Font.GothamBold
+levelLabel.TextSize = 36
+levelLabel.BackgroundTransparency = 1
+levelLabel.Visible = false
+levelLabel.Parent = screenGui
+
+local moneyLabel = Instance.new("TextLabel")
+moneyLabel.Size = UDim2.new(0.5, 0, 0.1, 0)
+moneyLabel.Position = UDim2.new(0.25, 0, 0.65, 0)
+moneyLabel.Text = "Money: $0"
+moneyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+moneyLabel.Font = Enum.Font.GothamBold
+moneyLabel.TextSize = 36
+moneyLabel.BackgroundTransparency = 1
+moneyLabel.Visible = false
+moneyLabel.Parent = screenGui
+
+local lastFpsUpdate = tick()
+local frameCount = 0
+local fps = 0
+local startTime = tick()
+
+local function toggleBackground()
+    background.Visible = not background.Visible
+    logoLabel.Visible = background.Visible
+    nameLabel.Visible = background.Visible
+    fpsLabel.Visible = background.Visible
+    timeLabel.Visible = background.Visible
+    levelLabel.Visible = background.Visible
+    moneyLabel.Visible = background.Visible
+end
+
+local ToggleUI = Instance.new("ScreenGui")
+local ToggleButton = Instance.new("TextButton")
+local BackgroundImage = Instance.new("ImageLabel")
+local ToggleButtonHUI = Instance.new("UICorner")
+
+ToggleUI.Name = "ToggleUI"
+ToggleUI.Parent = game.CoreGui
+ToggleUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ToggleButton.Name = "ToggleButton"
+ToggleButton.Parent = ToggleUI
+ToggleButton.BackgroundColor3 = Color3.fromRGB(23, 212, 224)
+ToggleButton.BackgroundTransparency = 1
+ToggleButton.BorderSizePixel = 0
+ToggleButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+ToggleButton.Size = UDim2.new(0, 50, 0, 50)
+ToggleButton.Font = Enum.Font.SourceSans
+ToggleButton.Text = ""
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleButton.TextSize = 14.000
+ToggleButton.Draggable = true
+
+BackgroundImage.Name = "BackgroundImage"
+BackgroundImage.Parent = ToggleButton
+BackgroundImage.BackgroundTransparency = 1
+BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
+BackgroundImage.Image = "rbxassetid://88374449523340"
+BackgroundImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
+
+ToggleButtonHUI.Parent = ToggleButton
+ToggleButtonHUI.CornerRadius = UDim.new(0, 10)
+
+local BackgroundImageHUI = Instance.new("UICorner")
+BackgroundImageHUI.CornerRadius = UDim.new(0, 10)
+BackgroundImageHUI.Parent = BackgroundImage
+
+local function toggleBackground()
+    background.Visible = not background.Visible
+    logoLabel.Visible = background.Visible
+    nameLabel.Visible = background.Visible
+    fpsLabel.Visible = background.Visible
+    timeLabel.Visible = background.Visible
+    levelLabel.Visible = background.Visible
+    moneyLabel.Visible = background.Visible
+end
+
+ToggleButton.MouseButton1Click:Connect(function()
+    toggleBackground()
+end)
+
+RunService.RenderStepped:Connect(function()
+    local now = tick()
+    frameCount = frameCount + 1
+    if now - lastFpsUpdate >= 1 then
+        fps = frameCount
+        fpsLabel.Text = "FPS: " .. tostring(fps)
+        frameCount = 0
+        lastFpsUpdate = now
+    end
+
+    local elapsedTime = now - startTime
+    local minutes = math.floor(elapsedTime / 60)
+    local seconds = math.floor(elapsedTime % 60)
+    timeLabel.Text = string.format("Time: %02d:%02d", minutes, seconds)
+
+    local level = Players.LocalPlayer:WaitForChild("leaderstats"):WaitForChild("Level")
+    levelLabel.Text = "Level: " .. tostring(level.Value)
+
+    local money = Players.LocalPlayer:WaitForChild("leaderstats"):WaitForChild("C$")
+    moneyLabel.Text = "Money: $" .. tostring(money.Value)
+end)
